@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+      <div class="header">
+        <div class="navbar">
+            <div class="logo">
+                <img src="/img/amazon-logo (1).png" alt="Logo">
+            </div>
+            <div class="delivery-address" id="delivery-address">
+                <span>Delivery Address</span>
+                <div class="address-list" id="address-list">
+                    <button class="add-address-btn" id="add-address-btn">Add Address</button>
+                </div>
+            </div>
+            <!---search bar --->
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+            <span class="menu-toggle" id="menu-toggle">&#x22EE;</span>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Accounts</a>
+                    <div class="dropdown-content">
+                        <a href="/login">Login</a>
+                        <a href="/signup">signup</a>
+                    </div>
+                </div>
+                <a href="#">Returns & Orders</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h2>Add Delivery Address</h2>
+            <form id="address-form">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <button type="submit">Add Address</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("add-address-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("close");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle the form submission
+        document.getElementById("address-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var address = document.getElementById("address").value;
+            if (address) {
+                var addressList = document.getElementById("address-list");
+                var newAddressItem = document.createElement("div");
+                newAddressItem.className = "address-item";
+                newAddressItem.textContent = address;
+                addressList.insertBefore(newAddressItem, btn);
+                document.getElementById("address").value = "";
+                modal.style.display = "none";
+            }
+        });
+
+        // Toggle address list visibility on hover
+        document.getElementById("delivery-address").addEventListener("mouseover", function() {
+            document.getElementById("address-list").classList.add("show");
+        });
+
+        document.getElementById("delivery-address").addEventListener("mouseout", function() {
+            document.getElementById("address-list").classList.remove("show");
+        });
+
+        // Toggle navigation links visibility on smaller screens
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("nav-links").classList.toggle("show");
+        });
+    </script>
+</body>
+</html>
