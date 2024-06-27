@@ -10,5 +10,12 @@ router.get('/login', function(req, res){
 router.get('/signup', function(req, res){
     res.render('signup');
 });
+router.get('/gridsclo', function(req, res){
+    res.render('gridsclo');
+});
+router.get('/gridshoes', function(req, res){
+    res.render('gridshoes');
+});
+
 
 module.exports = router;
