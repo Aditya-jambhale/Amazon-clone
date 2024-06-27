@@ -1,0 +1,619 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clothing Ecommerce Website</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <link rel="stylesheet" href="/gridshoes.css">
+        <script src="https://kit.fontawesome.com/dad03e859c.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra&family=Berkshire+Swash&family=Comic+Neue:wght@700&family=Gentium+Book+Plus:wght@400;700&family=Lato:ital,wght@0,400;0,700;0,900;1,700&family=Lexend+Deca:wght@500&family=Lexend:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500;800&family=Roboto:wght@100;400&family=Sue+Ellen+Francisco&family=Work+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900;&display:swap">
+    </head>
+
+<body>
+   <div class="header">
+        <div class="navbar">
+            <div class="logo">
+                <img src="/img/amazon-logo (1).png" alt="Logo">
+            </div>
+            <div class="delivery-address" id="delivery-address">
+                <span>Delivery Address</span>
+                <div class="address-list" id="address-list">
+                    <button class="add-address-btn" id="add-address-btn">Add Address</button>
+                </div>
+            </div>
+            <!---search bar --->
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+            <span class="menu-toggle" id="menu-toggle">&#x22EE;</span>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Accounts</a>
+                    <div class="dropdown-content">
+                        <a href="/login">Login</a>
+                        <a href="/signup">signup</a>
+                    </div>
+                </div>
+                <a href="#">Returns & Orders</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h2>Add Delivery Address</h2>
+            <form id="address-form">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <button type="submit">Add Address</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("add-address-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("close");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle the form submission
+        document.getElementById("address-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var address = document.getElementById("address").value;
+            if (address) {
+                var addressList = document.getElementById("address-list");
+                var newAddressItem = document.createElement("div");
+                newAddressItem.className = "address-item";
+                newAddressItem.textContent = address;
+                addressList.insertBefore(newAddressItem, btn);
+                document.getElementById("address").value = "";
+                modal.style.display = "none";
+            }
+        });
+
+        // Toggle address list visibility on hover
+        document.getElementById("delivery-address").addEventListener("mouseover", function() {
+            document.getElementById("address-list").classList.add("show");
+        });
+
+        document.getElementById("delivery-address").addEventListener("mouseout", function() {
+            document.getElementById("address-list").classList.remove("show");
+        });
+         // Toggle navigation links visibility on smaller screens
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("nav-links").classList.toggle("show");
+        });
+    </script>
+
+<section id="hero">
+  <h4>Trade-in-fair</h4>
+  <h2>Super value deals</h2>
+  <h1>On all Products</h1>
+  <p>Save more with coupons and up to 70% off!</p>
+  <button>Shop Now</button>
+  
+</section>
+
+
+<section id="product1" class="section-p1">
+  <h2>Featured Products</h2>
+  <p>Rainy Collection New Modern Design shoes for mens</p>
+  <i class="fas fa-shopping-cart openShopping"> <div class="shopping">
+    <!-- <img src="image/shopping.svg" /> -->
+    <span class="quantity">0</span>
+  </div></i>
+  <div class="pro-container">
+    <div class="pro" >
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_49e446c7-f4cd-4d8f-a07b-12b3574ca755.jpg?v=1703147620&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Carton Astronault Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><button class="fal fa-shopping-cart cart"></button></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/products/K1029G-WHT_1.jpg?v=1697017082&width=1167" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Carton Leave Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_52c77c95-e00b-47c3-8c1d-30579f2f0f4e.jpg?v=1703147701&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Rose Multicolor Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_9fed2214-4a2f-4a89-9bf9-33590b83febc.jpg?v=1703147806&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Pink Flower Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_271166b7-6910-4802-875f-2f94ab291b9d.jpg?v=1703147864&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/products/K1221G_BLK_1.jpg?v=1697017828&width=1000" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Short Knicker </h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/products/K1208G_NVY_1_42ed7971-23a5-4a7b-8f5d-5b8a7a9c8db8.jpg?v=1697017633&width=1167" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/products/K1208G_BLK_1_a32b76bc-3174-427c-bcab-edf46d67ae5a.jpg?v=1697019609&width=1167" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Ash Short</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+  </div>
+</section>
+
+<section id="banner" class="section-m1">
+  <h4> Repair Service</h4>
+  <h2>Up to <span>40% off </span> - All Shoes</h2>
+  <button class="btn normal">Explore more</button>
+  </section>
+
+<section id="product1" class="section-p1">
+  <h2>New Arrivals</h2>
+  <p>Rainy Collection New Modern Design shoes of women</p>
+  <div class="pro-container">
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_08573916-1012-495d-a2ef-b6cf30c4c9c4.jpg?v=1703146978&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Carton Astronault Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_cb52ba7e-6acd-446e-9c24-173b6fa28287.jpg?v=1703146733&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Carton Leave Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/0_f2363df2-93fa-4092-bc4c-ae03ad406c57.jpg?v=1703230033&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Rose Multicolor Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/1_67d583eb-ae60-4317-baa3-58a1481ab482.jpg?v=1706097096&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Pink Flower Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/products/k1016l_blk_1.jpg?v=1691748382&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_218e9972-7532-4851-9709-7df5bedf7367.jpg?v=1703146190&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Short Knicker </h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/0_17dc968b-4db7-4fcc-a851-e9027339f53e.jpg?v=1703146504&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://paragonfootwear.com/cdn/shop/files/Lifestyle_ef6373f9-9bb7-4760-80b4-b12a5123fce1.jpg?v=1703146260&width=1920" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Ash Short</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+    </div>
+    
+  </div>
+  <div class="card">
+    <h1>Shopping Bag</h1>
+    <ul class="listCard"></ul>
+    <div class="checkOut">
+      <div class="total">0</div>
+      <div class="closeShopping">Close</div>
+    </div>
+  </div>
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let openShopping = document.querySelector(".openShopping");
+    let closeShopping = document.querySelector(".closeShopping");
+    let listCard = document.querySelector(".listCard");
+    let total = document.querySelector(".total");
+    let quantity = document.querySelector(".quantity");
+
+    openShopping.addEventListener("click", () => {
+        document.querySelector(".card").classList.add("active");
+    });
+
+    closeShopping.addEventListener("click", () => {
+        document.querySelector(".card").classList.remove("active");
+    });
+
+    let listCards = [];
+
+    function initApp() {
+        const proContainer = document.querySelector('.pro-container');
+        proContainer.querySelectorAll('.pro').forEach((productDiv, index) => {
+            const cartBtn = productDiv.querySelector('.cart');
+            cartBtn.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default action of the button
+                addToCard(index + 1);
+            });
+        });
+    }
+    initApp();
+
+    function addToCard(id) {
+        let product = {
+            id: id,
+            name: document.querySelector(`.pro:nth-child(${id}) .des h5`).textContent,
+            image: document.querySelector(`.pro:nth-child(${id}) img`).src,
+            price: parseFloat(document.querySelector(`.pro:nth-child(${id}) .des h4`).textContent.replace('$', ''))
+        };
+        if (!listCards[id]) {
+            listCards[id] = { ...product, quantity: 1 };
+        } else {
+            listCards[id].quantity++;
+        }
+        reloadCard();
+    }
+
+    function reloadCard() {
+        listCard.innerHTML = "";
+        let count = 0;
+        let totalPrice = 0;
+
+        listCards.forEach((value, key) => {
+            if (value) {
+                totalPrice += value.price * value.quantity;
+                count += value.quantity;
+
+                let newDiv = document.createElement("li");
+                newDiv.innerHTML = `
+                    <div><img src="${value.image}" /></div>
+                    <div>${value.name}</div>
+                    <div>£${(value.price * value.quantity).toFixed(2)}</div>
+                    <div>
+                        <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+                        <div class="count">${value.quantity}</div>
+                        <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                    </div>`;
+                listCard.appendChild(newDiv);
+            }
+        });
+
+        total.innerText = `£${totalPrice.toFixed(2)}`;
+        quantity.innerText = count;
+    }
+
+    window.changeQuantity = function(key, quantity) {
+        if (quantity === 0) {
+            delete listCards[key];
+        } else {
+            listCards[key].quantity = quantity;
+        }
+        reloadCard();
+    }
+});
+
+
+ </script> 
+</section>
+ {{!-- footer  --}}
+  <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">Amazon Cares</a></li>
+                    <li><a href="#">Gift a Smile</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell on Amazon</a></li>
+                    <li><a href="#">Amazon Global Selling</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Fulfilment by Amazon</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Returns Centre</a></li>
+                    <li><a href="#">100% Purchase Protection</a></li>
+                    <li><a href="#">Amazon App Download</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <img src="/img/amazon-logo (1).png" alt="Amazon Logo">
+            <p>© 2024, Amazon Clone</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("add-address-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("close");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+
+</body>
+
+</html>

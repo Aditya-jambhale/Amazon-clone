@@ -1,0 +1,727 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clothing Ecommerce Website</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+        <link rel="stylesheet" href="/gridsclo.css">
+        <script src="https://kit.fontawesome.com/dad03e859c.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="cart.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra&family=Berkshire+Swash&family=Comic+Neue:wght@700&family=Gentium+Book+Plus:wght@400;700&family=Lato:ital,wght@0,400;0,700;0,900;1,700&family=Lexend+Deca:wght@500&family=Lexend:wght@500&family=Montserrat:wght@500&family=Open+Sans:wght@500;800&family=Roboto:wght@100;400&family=Sue+Ellen+Francisco&family=Work+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900;&display:swap">
+    </head>
+
+    <body>
+       <div class="header">
+        <div class="navbar">
+            <div class="logo">
+                <img src="/img/amazon-logo (1).png" alt="Logo">
+            </div>
+            <div class="delivery-address" id="delivery-address">
+                <span>Delivery Address</span>
+                <div class="address-list" id="address-list">
+                    <button class="add-address-btn" id="add-address-btn">Add Address</button>
+                </div>
+            </div>
+            <!---search bar --->
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+            <span class="menu-toggle" id="menu-toggle">&#x22EE;</span>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Accounts</a>
+                    <div class="dropdown-content">
+                        <a href="/login">Login</a>
+                        <a href="/signup">signup</a>
+                    </div>
+                </div>
+                <a href="#">Returns & Orders</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h2>Add Delivery Address</h2>
+            <form id="address-form">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                <button type="submit">Add Address</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("add-address-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("close");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle the form submission
+        document.getElementById("address-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var address = document.getElementById("address").value;
+            if (address) {
+                var addressList = document.getElementById("address-list");
+                var newAddressItem = document.createElement("div");
+                newAddressItem.className = "address-item";
+                newAddressItem.textContent = address;
+                addressList.insertBefore(newAddressItem, btn);
+                document.getElementById("address").value = "";
+                modal.style.display = "none";
+            }
+        });
+
+        // Toggle address list visibility on hover
+        document.getElementById("delivery-address").addEventListener("mouseover", function() {
+            document.getElementById("address-list").classList.add("show");
+        });
+
+        document.getElementById("delivery-address").addEventListener("mouseout", function() {
+            document.getElementById("address-list").classList.remove("show");
+        });
+
+        // Toggle navigation links visibility on smaller screens
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            document.getElementById("nav-links").classList.toggle("show");
+        });
+  </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    let openShopping = document.querySelector(".openShopping");
+    let closeShopping = document.querySelector(".closeShopping");
+    let listCard = document.querySelector(".listCard");
+    let total = document.querySelector(".total");
+    let quantity = document.querySelector(".quantity");
+
+    openShopping.addEventListener("click", () => {
+        document.querySelector(".card").classList.add("active");
+    });
+
+    closeShopping.addEventListener("click", () => {
+        document.querySelector(".card").classList.remove("active");
+    });
+
+    let products = [
+        { id: 1, name: "Carton Astronault Tshirts", image: "https://i.postimg.cc/hG1hqqK6/n1.jpg", price: 78.00 },
+        { id: 2, name: "Carton Leave Tshirts", image: "https://i.postimg.cc/BZkSkvxt/n2.jpg", price: 78.00 },
+        { id: 3, name: "Rose Multicolor Tshirts", image: "https://i.postimg.cc/KYjcC3sk/n3.jpg", price: 78.00 },
+        { id: 4, name: "Pink Flower Tshirts", image: "https://i.postimg.cc/vHvQBtJx/n4.jpg", price: 78.00 },
+        { id: 5, name: "Purple Flowering Tshirts", image: "https://i.postimg.cc/908J8S4q/n5.jpg", price: 78.00 },
+        { id: 6, name: "Short Knicker", image: "https://i.postimg.cc/X7r8NsGQ/n7.jpg", price: 78.00 },
+        { id: 7, name: "2 in 1 Double Routed", image: "https://i.postimg.cc/JhrH0hYM/n8.jpg", price: 78.00 },
+        { id: 8, name: "Ash Short", image: "https://image.spreadshirtmedia.com/image-server/v1/products/T111A2PA4247PT17X85Y11D1008512843W17886H25399/views/1,width=550,height=550,appearanceId=2,backgroundColor=F2F2F2,modelId=5981,crop=list/im-a-medical-assistant-mens-hoodie.jpg", price: 78.00 },
+        { id: 9, name: "Sigma Rule 224 Tshirt", image: "https://www.teez.in/cdn/shop/products/SigmaRule224Tshirt_17_ab205ddd-0a6f-4c71-8023-5ae7f6cf07e5_large.jpg?v=1642488578", price: 78.00 },
+        { id: 10, name: "Short Knicker", image: "https://i.postimg.cc/X7r8NsGQ/n7.jpg", price: 78.00 },
+        { id: 11, name: "2 in 1 Double Routed", image: "https://i.postimg.cc/JhrH0hYM/n8.jpg", price: 78.00 },
+        { id: 12, name: "Ash Short", image: "https://image.spreadshirtmedia.com/image-server/v1/products/T111A2PA4247PT17X85Y11D1008512843W17886H25399/views/1,width=550,height=550,appearanceId=2,backgroundColor=F2F2F2,modelId=5981,crop=list/im-a-medical-assistant-mens-hoodie.jpg", price: 78.00 },
+        { id: 13, name: "Sigma Rule 224 Tshirt", image: "https://www.teez.in/cdn/shop/products/SigmaRule224Tshirt_17_ab205ddd-0a6f-4c71-8023-5ae7f6cf07e5_large.jpg?v=1642488578", price: 78.00 },
+        { id: 14, name: "Short Knicker", image: "https://i.postimg.cc/X7r8NsGQ/n7.jpg", price: 78.00 },
+        { id: 15, name: "2 in 1 Double Routed", image: "https://i.postimg.cc/JhrH0hYM/n8.jpg", price: 78.00 },
+        { id: 16, name: "Ash Short", image: "https://image.spreadshirtmedia.com/image-server/v1/products/T111A2PA4247PT17X85Y11D1008512843W17886H25399/views/1,width=550,height=550,appearanceId=2,backgroundColor=F2F2F2,modelId=5981,crop=list/im-a-medical-assistant-mens-hoodie.jpg", price: 78.00 },
+      
+
+
+    ];
+
+    let listCards = [];
+
+    function initApp() {
+        const proContainer = document.querySelector('.pro-container');
+        proContainer.innerHTML = '';
+        products.forEach(product => {
+            let productDiv = document.createElement('div');
+            productDiv.className = 'pro';
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>${product.name}</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>$${product.price}</h4>
+                </div>
+                <i class="fal fa-shopping-cart cart" data-id="${product.id}"></i>
+            `;
+            proContainer.appendChild(productDiv);
+        });
+
+        document.querySelectorAll('.cart').forEach(cartBtn => {
+            cartBtn.addEventListener('click', () => {
+                let id = parseInt(cartBtn.getAttribute('data-id'));
+                addToCard(id);
+            });
+        });
+    }
+    initApp();
+
+    function addToCard(id) {
+        let product = products.find(p => p.id === id);
+        if (!listCards[id]) {
+            listCards[id] = { ...product, quantity: 1 };
+        } else {
+            listCards[id].quantity++;
+        }
+        reloadCard();
+    }
+
+    function reloadCard() {
+        listCard.innerHTML = "";
+        let count = 0;
+        let totalPrice = 0;
+
+        listCards.forEach((value, key) => {
+            if (value) {
+                totalPrice += value.price * value.quantity;
+                count += value.quantity;
+
+                let newDiv = document.createElement("li");
+                newDiv.innerHTML = `
+                    <div><img src="${value.image}" /></div>
+                    <div>${value.name}</div>
+                    <div>£${(value.price * value.quantity).toFixed(2)}</div>
+                    <div>
+                        <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+                        <div class="count">${value.quantity}</div>
+                        <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                    </div>`;
+                listCard.appendChild(newDiv);
+            }
+        });
+
+        total.innerText = `£${totalPrice.toFixed(2)}`;
+        quantity.innerText = count;
+    }
+
+    window.changeQuantity = function(key, quantity) {
+        if (quantity === 0) {
+            delete listCards[key];
+        } else {
+            listCards[key].quantity = quantity;
+        }
+        reloadCard();
+    }
+});
+
+      </script>
+      <section id="hero">
+        <h4>Trade-in-fair</h4>
+        <h2>Super value deals</h2>
+        <h1>On all Products</h1>
+        <p>Save more with coupons and up to 70% off!</p>
+        <button>Shop Now</button>
+        
+      </section>
+       
+   
+      <section id="product1" class="section-p1">
+        <div class="product-header">
+          <div class="header-text">
+            <h2>Featured Products</h2>
+            <p>Summer Collection New Modern Design</p>
+          </div>
+          <i class="fas fa-shopping-cart openShopping"> <div class="shopping">
+            <!-- <img src="image/shopping.svg" /> -->
+            <span class="quantity">0</span>
+          </div></i>
+         
+        </div>
+        <div class="pro-container">
+          <div class="pro">
+            <img src="https://i.postimg.cc/hG1hqqK6/n1.jpg" alt="">
+            <div class="des">
+              <span>adidas</span>
+              <h5>Carton Astronault Tshirts</h5>
+              <div class="star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <h4>$78</h4>
+            </div>
+            <i class="fal fa-shopping-cart cart" data-id="1"></i>
+          </div>
+    <div class="pro">
+      <img src="https://i.postimg.cc/BZkSkvxt/n2.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Carton Leave Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+  </div>
+  <i class="fal fa-shopping-cart cart" data-id="2"></i>
+</div>
+    
+    <div class="pro">
+      <img src="https://i.postimg.cc/KYjcC3sk/n3.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Rose Multicolor Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+  </div>
+  <i class="fal fa-shopping-cart cart" data-id="3"></i>
+</div>
+    
+    
+    <div class="pro">
+      <img src="https://i.postimg.cc/vHvQBtJx/n4.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Pink Flower Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <i class="fal fa-shopping-cart cart" data-id="4"></i>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="5"></i></a>
+    </div>
+    
+    
+    
+    <div class="pro">
+      <img src="https://i.postimg.cc/X7r8NsGQ/n7.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Short Knicker </h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="6"></i></a>
+    </div>
+    <div class="pro">
+        <img src="https://i.postimg.cc/JhrH0hYM/n8.jpg" alt="">
+        <div class="des">
+          <span>adidas</span>
+          <h5>2 in 1 Double Routed</h5>
+          <div class="star">
+            <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+          </div>
+          <h4>$78</h4>
+        </div>
+        <a href=""><i class="fal fa-shopping-cart cart" data-id="7"></i></a>
+      </div>
+         <div class="pro">
+        <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+        <div class="des">
+          <span>adidas</span>
+          <h5>Purple Flowering Tshirts</h5>
+          <div class="star">
+            <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+          </div>
+          <h4>$78</h4>
+        </div>
+        <a href=""><i class="fal fa-shopping-cart cart" data-id="8"></i></a>
+      </div>
+      
+      
+      <div class="pro">
+        <img src="https://image.spreadshirtmedia.com/image-server/v1/products/T111A2PA4247PT17X85Y11D1008512843W17886H25399/views/1,width=550,height=550,appearanceId=2,backgroundColor=F2F2F2,modelId=5981,crop=list/im-a-medical-assistant-mens-hoodie.jpg" alt="">
+        <div class="des">
+          <span>adidas</span>
+          <h5>Ash Short</h5>
+          <div class="star">
+            <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+             <i class="fas fa-star"></i>
+          </div>
+          <h4>$78</h4>
+        </div>
+        <a href=""><i class="fal fa-shopping-cart cart" data-id="9"></i></a>
+      </div>
+    
+    
+    <div class="pro">
+      <img src="https://i.postimg.cc/JhrH0hYM/n8.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="10"></i></a>
+    </div>
+       <div class="pro">
+      <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="11"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://www.teez.in/cdn/shop/products/SigmaRule224Tshirt_17_ab205ddd-0a6f-4c71-8023-5ae7f6cf07e5_large.jpg?v=1642488578" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Ash Short</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="12"></i></a>
+    </div>
+    <div class="pro">
+      <img src="https://i.postimg.cc/JhrH0hYM/n8.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="13"></i></a>
+    </div>
+       <div class="pro">
+      <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="14"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://www.teez.in/cdn/shop/products/SigmaRule224Tshirt_17_ab205ddd-0a6f-4c71-8023-5ae7f6cf07e5_large.jpg?v=1642488578" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Ash Short</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="15"></i></a>
+    </div>
+    <div class="pro">
+      <img src="https://i.postimg.cc/JhrH0hYM/n8.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="16"></i></a>
+    </div>
+       <div class="pro">
+      <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="17"></i></a>
+    </div>
+    
+    
+    <div class="pro">
+      <img src="https://www.teez.in/cdn/shop/products/SigmaRule224Tshirt_17_ab205ddd-0a6f-4c71-8023-5ae7f6cf07e5_large.jpg?v=1642488578" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Ash Short</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="18"></i></a>
+    </div>
+    <div class="pro">
+      <img src="https://i.postimg.cc/JhrH0hYM/n8.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>2 in 1 Double Routed</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="19"></i></a>
+    </div>
+       <div class="pro">
+      <img src="https://i.postimg.cc/908J8S4q/n5.jpg" alt="">
+      <div class="des">
+        <span>adidas</span>
+        <h5>Purple Flowering Tshirts</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+           <i class="fas fa-star"></i>
+        </div>
+        <h4>$78</h4>
+      </div>
+      <a href=""><i class="fal fa-shopping-cart cart" data-id="20"></i></a>
+    </div>
+     </div>
+  </section>
+  <div class="snip-heading">
+    <h2>featured sections</h2>
+  <p>New Modern Design</p>
+  </div>
+  <div class="snip-container">
+    <figure class="snip1246">
+      <img src="https://img.etimg.com/thumb/msid-70021430,width-640,height-480,imgsize-114127,resizemode-4/banking-on-female-shoppers.jpg" alt="sample88"/>
+      <figcaption>
+        <h2>Womens</h2>
+        <p>Know what I pray for? The strength to change what I can, the inability to accept what I can't and the incapacity to tell the difference.</p>
+
+        <a href="#" class="add-to-cart">Shop-now</a>
+      </figcaption>
+    </figure>
+    <figure class="snip1246">
+      <img src="https://www.freestock.com/450/freestock_145671041.jpg" alt="sample74"/>
+      <figcaption>
+        <h2>Mens</h2>
+        <p>If something is so complicated that you can't explain it in 10 seconds, then it's probably not worth knowing anyway.</p>
+        
+        <a href="#" class="add-to-cart">Shop-now</a>
+      </figcaption>
+    </figure>
+    <figure class="snip1246">
+      <img src="https://t4.ftcdn.net/jpg/01/33/96/57/360_F_133965710_qzv5mhpMxPOCwSG8QFQZVrUUVyoARDY8.jpg" alt="sample77"/>
+      <figcaption>
+        <h2>Kids</h2>
+        <p>I suppose if we couldn't laugh at things that don't make sense, we couldn't react to a lot of life.</p>
+        
+        <a href="#" class="add-to-cart">Shop-now</a>
+      </figcaption>
+    </figure>
+  </div>
+  
+  <div class="card">
+    <h1>Shopping Bag</h1>
+    <ul class="listCard"></ul>
+    <div class="checkOut">
+      <div class="total">0</div>
+      <div class="closeShopping">Close</div>
+    </div>
+  </div>
+   {{!-- footer  --}}
+  <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">Amazon Cares</a></li>
+                    <li><a href="#">Gift a Smile</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect with Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell on Amazon</a></li>
+                    <li><a href="#">Amazon Global Selling</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Fulfilment by Amazon</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Returns Centre</a></li>
+                    <li><a href="#">100% Purchase Protection</a></li>
+                    <li><a href="#">Amazon App Download</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <img src="/img/amazon-logo (1).png" alt="Amazon Logo">
+            <p>© 2024, Amazon Clone</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("add-address-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("close");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    </body>
+
+</html>
