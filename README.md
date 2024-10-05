@@ -28,25 +28,17 @@ bash
 bash
   cd Amazon-Hacktoberfest2024
 
-
 #### Install npm packages
 
 bash
   npm install
-
 
 #### Run Project
 
 bash
   npm start
 
-
-
-
-
 ## Contributing
-
-
 
 ##Steps to Contribute:
 
