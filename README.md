@@ -1,4 +1,4 @@
-# AMAZON CLONE HACKTOBERFEST-2024
+# AMAZON CLONE 
 
 ## Maintainers
 
@@ -22,11 +22,11 @@ Steps to install and setup the app are demonstrated with following commands:
 #### Clone the repository
 
 bash
-  git clone https://github.com/CSI-DMCE-2024/Amazon-Hacktoberfest2024.git
+  git clone https://github.com/Aditya-jambhale/Amazon-clone.git
 
 
 bash
-  cd Amazon-Hacktoberfest2024
+  cd Amazon-clone
 
 #### Install npm packages
 
@@ -47,7 +47,7 @@ bash
 #### 2. Clone your forked repository to local machine.
 
 bash
-git clone https://github.com/CSI-DMCE-2024/Amazon-Hacktoberfest2024.git
+git clone https://github.com/Aditya-jambhale/Amazon-clone.git
 
 
 #### 3. Create a branch
